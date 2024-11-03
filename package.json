@@ -7,15 +7,14 @@
     "start": "node app4.js"
   },
   "dependencies": {
+    "dot-prop": ">=5.1.1",
     "ejs": "^3.1.10",
-    "express": "^4.17.1",
+    "express": "^4.21.1",
     "kind-of": "^6.0.3",
     "minimist": "^1.2.5",
     "mixin-deep": "^1.3.2",
     "set-value": "^4.0.1",
-    "sqlite3": "",
-    "dot-prop": ">=5.1.1"
+    "sqlite3": ""
   },
-  "devDependencies": {},
   "keywords": []
 }
