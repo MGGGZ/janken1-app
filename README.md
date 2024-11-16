@@ -11,8 +11,33 @@ public/janken.html | じゃんけんの開始画面
 views/gacha.ejs|gachaテンプレートのエンジン
 views/quiz.ejs|quizテンプレートのエンジン
 
+##追加したプログラミング
 ```javascript
-console.log( 'Hello' );
+app.get("/gacha", (req, res) => {
+  const pulls = Number(req.query.pulls) || 0; 
+  const results = [];
+
+  if (pulls > 0) {
+    for (let i = 0; i < pulls; i++) {
+      const randomNum = Math.random();
+      let result;
+
+      if (randomNum < 0.05) {
+        result = '白銀王者ライオウ';
+      } else if (randomNum < 0.20) {
+        result = '黄金王者エレファ';
+      } else if (randomNum < 0.50) {
+        result = '銅獣王者ハイーナ';
+      } else {
+        result = '郡獣王者ガーゼル';
+      }
+
+      results.push(result); 
+    }
+  }
+
+  res.render('gacha', { results });
+});
 ```
 ```mermaid
 flowchart TD;
