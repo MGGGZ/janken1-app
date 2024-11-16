@@ -14,6 +14,7 @@ views/gacha.ejs|gachaテンプレートのエンジン
 views/quiz.ejs|quizテンプレートのエンジン
 public/Apple_logo_black.svg|ロゴの表示
 
+### app5.js
 
 ```javascript
 
@@ -24,7 +25,7 @@ app.set('view engine', 'ejs');
 app.use("/public", express.static(__dirname + "/public"));
 
 app.get("/hello1", (req, res) => {
-  const messae1 = "Hello world";
+  const message1 = "Hello world";
   const message2 = "Bon jour";
   res.render('show', { greet1:message1, greet2:message2});
 });
@@ -141,12 +142,39 @@ app.listen(8080, () => console.log("Example app listening on port 8080!"));
 
 ### 元々あったプログラミング
 
+共通設定としてapp.set('view engine', 'ejs');というテンプレートエンジンとしてEJSを使用することを指定というのがある。EJSテンプレートを使ってHTMLを生成する。
 
+app.use("/public", express.static(__dirname + "/public"));は /public URLパスで静的ファイルを提供する。 CSS、画像、JavaScriptファイルなどの静的リソースを提供する。
 
+###　それぞれのプログラミング
 
-共通設定
+#### /hello1
 
+message1 と message2 の2つの挨拶メッセージをクライアントに送信。
 
+#### /hello2
+
+固定メッセージ (Hello world と Bon jour) をテンプレートに渡して演算する。
+
+#### /icon
+
+ 静的画像ファイルをテンプレートに渡して表示。
+
+#### /luck
+
+サイコロの目 (1～6) をランダムに生成し、運勢を表示。
+
+#### /janken
+
+手（グー、チョキ、パー）を入力として受け取り、CPUの手と比較して勝敗を判定。
+
+勝利回数 (win) と合計ゲーム数 (total) を記録する。
+
+処理の流れ:
+クライアントが ?hand=グー&win=2&total=4 のようなクエリでアクセス。
+サーバーがランダムにCPUの手を決定。
+ユーザーの手とCPUの手を比較して結果を計算。
+勝敗結果とスコアをテンプレートに渡して表示。
 
 
 
