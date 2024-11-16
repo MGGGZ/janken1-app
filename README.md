@@ -44,7 +44,18 @@ app.get("/gacha", (req, res) => {
 ```
 ```mermaid
 flowchart TD;
-開始 --> 終了;
+start["開始"];
+end1["終了"]
+if{"条件の選択"}
+1["1回実行"]
+10["10回実行"]
+
+start --> if
+if --> 1
+1 --> end1
+if --> 10
+10 --> end1
+
 ```
 
 ```mermaid
