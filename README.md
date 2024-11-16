@@ -31,8 +31,7 @@ app.get("/gacha", (req, res) => {
         result = '黄金王者エレファ';
       } else if (randomNum < 0.50) {
         result = '銅獣王者ハイーナ';
-      }else if (randomNum < 0.0000114514810) {
-          result = '野獣先輩';
+      
       } else {
         result = '郡獣王者ガーゼル';
       }
