@@ -43,8 +43,19 @@ app.get("/gacha", (req, res) => {
   res.render('gacha', { results });
 });
 ```
+/gachaは,webでアクセスするとこの関数が実行される。
+(req.query.pulls)は追加データとして扱い、条件選択で指定された分ガチャを回し、その結果を表示させる。
+初期状態では、値は0であるため何も表示されません。
+const results = [];はガチャの結果を保存する配列。
+if (pulls > 0)はpullsが0よりも大きい場合はにガチャ処理を実行する。
+ガチャの確率判定
 
-
+確率(%)|名称('')
+-|-
+5%|'白銀王者ライオウ'
+15%|'黄金王者エレファ'
+30%|'銅獣王者ハイーナ'
+50%|'郡獣王者ガーゼル'
 
 ```ejs
 <!DOCTYPE html>
@@ -76,7 +87,6 @@ app.get("/gacha", (req, res) => {
 
 
 
-
 ```mermaid
 flowchart TD;
 start["開始"];
@@ -93,6 +103,7 @@ if --> 10
 
 ```
 
+"http://localhost:8080/gacha"をwebで実行すると
 
 
 
