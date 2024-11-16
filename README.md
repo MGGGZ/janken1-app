@@ -11,7 +11,10 @@ public/janken.html | じゃんけんの開始画面
 views/gacha.ejs|gachaテンプレートのエンジン
 views/quiz.ejs|quizテンプレートのエンジン
 
-##追加したプログラミング
+## 追加したプログラミング
+
+### ガチャでよくある１回と１０回を選べる
+
 ```javascript
 app.get("/gacha", (req, res) => {
   const pulls = Number(req.query.pulls) || 0; 
