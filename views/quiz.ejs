@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>印象操作クイズ</title>
+</head>
+<body>
+  <h1>印象操作クイズ</h1>
+  <p>以下のヒントを参考に答えを考えてください。</p>
+
+  <ul>
+    <% clues.forEach(clue => { %>
+      <li><%= clue %></li>
+    <% }); %>
+  </ul>
+
+  <% if (result) { %>
+    <p>あなたの答え: <%= answer %></p>
+    <p>結果: <%= result %></p>
+  <% } %>
+
+  <form action="/quiz" method="get">
+    <input type="text" name="answer" placeholder="答えを入力してください">
+    <button type="submit">送信</button>
+  </form>
+</body>
+</html>
