@@ -42,6 +42,40 @@ app.get("/gacha", (req, res) => {
   res.render('gacha', { results });
 });
 ```
+
+
+
+```ejs
+<!DOCTYPE html>
+<html>
+<head>
+  <title>野蛮猛獣</title>
+</head>
+<body>
+  <h1>野蛮猛獣</h1>
+
+  <% if (results.length > 0) { %>
+    <ul>
+      <% results.forEach(result => { %>
+        <li><%= result %></li>
+      <% }); %>
+    </ul>
+  <% } else { %>
+
+  <% } %>
+
+  <form action="/gacha" method="get">
+    <button type="submit" name="pulls" value="1">1回実行</button>
+    <button type="submit" name="pulls" value="10">10回実行</button>
+  </form>
+</body>
+</html>
+
+```
+
+
+
+
 ```mermaid
 flowchart TD;
 start["開始"];
@@ -58,20 +92,6 @@ if --> 10
 
 ```
 
-```mermaid
-flowchart TD;
 
-start["開始"];
-end1["終了"]
-if{"条件に合うか"}
-win["勝ち"]
-loose["負け"]
-
-start --> if
-if -->|yes| win
-win --> end1
-if -->|no| loose
-loose --> end1
-```
 
 
