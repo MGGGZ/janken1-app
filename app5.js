@@ -5,7 +5,7 @@ app.set('view engine', 'ejs');
 app.use("/public", express.static(__dirname + "/public"));
 
 app.get("/hello1", (req, res) => {
-  const message1 = "Hello world";
+  const messae1 = "Hello world";
   const message2 = "Bon jour";
   res.render('show', { greet1:message1, greet2:message2});
 });
@@ -65,6 +65,51 @@ app.get("/janken", (req, res) => {
     total: total
   };
   res.render('janken', display);
+});
+
+app.get("/gacha", (req, res) => {
+  const pulls = Number(req.query.pulls) || 0; 
+  const results = [];
+
+  if (pulls > 0) {
+    for (let i = 0; i < pulls; i++) {
+      const randomNum = Math.random();
+      let result;
+
+      if (randomNum < 0.05) {
+        result = '白銀王者ライオウ';
+      } else if (randomNum < 0.20) {
+        result = '黄金王者エレファ';
+      } else if (randomNum < 0.50) {
+        result = '銅獣王者ハイーナ';
+      } else {
+        result = '郡獣王者ガーゼル';
+      }
+
+      results.push(result); 
+    }
+  }
+
+  res.render('gacha', { results });
+});
+
+app.get("/quiz", (req, res) => {
+  const answer = req.query.answer || ""; 
+  const correctAnswers = ["ハサミ", "はさみ"]; 
+  const clues = [
+    "約6000年前に存在する。発明者は記録が残っていない。",
+    "某有名なゲームに登場し、攻撃方法は一撃技である。",
+    "身近なものであり、鋭い",
+  ];
+
+
+  const result = answer
+    ? correctAnswers.includes(answer)
+      ? "正解！"
+      : "不正解！もう一度お願いします！"
+    : "";
+
+  res.render("quiz", { clues, answer, result });
 });
 
 
