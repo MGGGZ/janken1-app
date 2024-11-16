@@ -126,4 +126,77 @@ if --> 10
 
 
 
+```javascript
+app.get("/quiz", (req, res) => {
+  const answer = req.query.answer || ""; 
+  const correctAnswers = ["ハサミ", "はさみ"]; 
+  const clues = [
+    "約6000年前に存在する。発明者は記録が残っていない。",
+    "某有名なゲームに登場し、攻撃方法は一撃技である。",
+    "身近なものであり、鋭い",
+  ];
+
+
+  const result = answer
+    ? correctAnswers.includes(answer)
+      ? "正解！"
+      : "不正解！もう一度お願いします！"
+    : "";
+
+  res.render("quiz", { clues, answer, result });
+});
+
+```
+
+
+
+
+```ejs
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>印象操作クイズ</title>
+</head>
+<body>
+  <h1>印象操作クイズ</h1>
+  <p>以下のヒントを参考に答えを考えてください。</p>
+
+  <ul>
+    <% clues.forEach(clue => { %>
+      <li><%= clue %></li>
+    <% }); %>
+  </ul>
+
+  <% if (result) { %>
+    <p>あなたの答え: <%= answer %></p>
+    <p>結果: <%= result %></p>
+  <% } %>
+
+  <form action="/quiz" method="get">
+    <input type="text" name="answer" placeholder="答えを入力してください">
+    <button type="submit">送信</button>
+  </form>
+</body>
+</html>
+
+```
+
+```mermaid
+flowchart TD;
+start["開始"];
+end1["終了"]
+if{"条件の入力"}
+1["正解"]
+10["不正解"]
+
+start --> if
+if --> [正解]1
+1 --> end1
+if --> [不正解]10
+10 --> end1
+```
+
+
+
 
