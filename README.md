@@ -8,7 +8,8 @@
 -|-
 app5.js | プログラム本体
 public/janken.html | じゃんけんの開始画面
-
+views/gacha.ejs|gachaテンプレートのエンジン
+views/quiz.ejs|quizテンプレートのエンジン
 
 ```javascript
 console.log( 'Hello' );
@@ -33,3 +34,5 @@ win --> end1
 if -->|no| loose
 loose --> end1
 ```
+
+
