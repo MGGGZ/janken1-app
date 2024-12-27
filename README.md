@@ -396,18 +396,15 @@ res.render("quiz", { clues, answer, result });はクイズのヒントを表示�
 
 
 ```mermaid
-flowchart TD;
-start["開始"];
-end1["終了"]
-if{"条件の入力"}
-1["正解"]
-10["不正解"]
+flowchart TD
+    start["クイズ開始"] --> input["回答入力"]
+    input --> check{"正解か？"}
+    check -->|はい| correct["正解！"]
+    check -->|いいえ| incorrect["不正解"]
+    incorrect --> retry["再入力"]
+    retry --> input
+    correct --> finish["終了"]
 
-start --> if
-if --> |正解|1
-1 --> end1
-if --> |不正解|10
-10 --> end1
 ```
 "http://localhost:8080/quiz"
 
@@ -422,3 +419,9 @@ if --> |不正解|10
 判定結果とヒントを再度送信する。
 結果の表示は回答と結果が表示され、再挑戦する場合はフォームを使う。
 
+### 実行方法
+
+1. サーバーを起動する：`node app5.js`
+2. ブラウザで対応するURL（例: `http://localhost:8080/quiz`）にアクセスする。
+
+これにより、各機能をブラウザ上で利用できる。
